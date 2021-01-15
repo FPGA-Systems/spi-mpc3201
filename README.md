@@ -15,6 +15,6 @@
 
 Присоединяйтесь к нашему сообществу:
 * Сайт сообщества: [fpga-systems.ru](https://fpga-systems.ru/)
-* Телеграмм: чат [@fpga-systems](https://t.me/fpgasystems), новости [@fpgasystems_events](https://t.me/fpgasystems_events)
+* Телеграмм: чат [@fpgasystems](https://t.me/fpgasystems), новости [@fpgasystems_events](https://t.me/fpgasystems_events)
 * Youtube: [FPGA Systems](https://www.youtube.com/c/fpgasystems)
 * Facebook: [fpgasystems.ru](https://www.facebook.com/groups/fpgasystems.ru)
