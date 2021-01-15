@@ -1,0 +1,35 @@
+set_property IOSTANDARD LVCMOS33 [get_ports ispi_din]
+set_property IOSTANDARD LVCMOS33 [get_ports ospi_clk]
+set_property IOSTANDARD LVCMOS33 [get_ports ospi_ncs]
+set_property PACKAGE_PIN F4 [get_ports ispi_din]
+set_property PACKAGE_PIN F3 [get_ports ospi_clk]
+set_property PACKAGE_PIN D3 [get_ports ospi_ncs]
+
+
+set_property MARK_DEBUG true [get_nets ospi_clk_OBUF]
+set_property MARK_DEBUG true [get_nets ospi_ncs_OBUF]
+set_property MARK_DEBUG true [get_nets ispi_din_IBUF]
+
+
+create_debug_core u_ila_0 ila
+set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
+set_property ALL_PROBE_SAME_MU_CNT 1 [get_debug_cores u_ila_0]
+set_property C_ADV_TRIGGER false [get_debug_cores u_ila_0]
+set_property C_DATA_DEPTH 8192 [get_debug_cores u_ila_0]
+set_property C_EN_STRG_QUAL false [get_debug_cores u_ila_0]
+set_property C_INPUT_PIPE_STAGES 0 [get_debug_cores u_ila_0]
+set_property C_TRIGIN_EN false [get_debug_cores u_ila_0]
+set_property C_TRIGOUT_EN false [get_debug_cores u_ila_0]
+set_property port_width 1 [get_debug_ports u_ila_0/clk]
+connect_debug_port u_ila_0/clk [get_nets [list inst_clk_wiz/inst/clk_out1]]
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe0]
+set_property port_width 12 [get_debug_ports u_ila_0/probe0]
+connect_debug_port u_ila_0/probe0 [get_nets [list {adc_data[0]} {adc_data[1]} {adc_data[2]} {adc_data[3]} {adc_data[4]} {adc_data[5]} {adc_data[6]} {adc_data[7]} {adc_data[8]} {adc_data[9]} {adc_data[10]} {adc_data[11]}]]
+create_debug_port u_ila_0 probe
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe1]
+set_property port_width 4 [get_debug_ports u_ila_0/probe1]
+connect_debug_port u_ila_0/probe1 [get_nets [list adc_data_valid ospi_clk_OBUF ospi_ncs_OBUF ispi_din_IBUF]]
+set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
+set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
+set_property C_USER_SCAN_CHAIN 1 [get_debug_cores dbg_hub]
+connect_debug_port dbg_hub/clk [get_nets sys_clk]
