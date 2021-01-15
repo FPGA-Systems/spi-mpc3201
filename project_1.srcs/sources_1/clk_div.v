@@ -26,27 +26,18 @@ module clk_div(
     );
     
     
-    reg [3 : 0] cnt;
+    reg [2 : 0] cnt;
     reg ce;
     
     initial begin
     	cnt <= 0;
-    	ce <= 0;
+    	ce  <= 0;
     end
     
     always @(posedge isys_clk)
     begin
-    	if (cnt == 7) begin
-    		ce <= 1'b1;
-    	end else begin
-    		ce <= 1'b0;
-    	end
-    	
-    	if (cnt == 7) begin
-    		cnt <= 0;
-    	end else begin
-    		cnt <= cnt + 1'b1;
-    	end 
+        ce  <= (cnt == 7) ? 1'b1 : 1'b0;
+        cnt <= cnt + 1'b1; 
     end
     
     assign oce = ce;
